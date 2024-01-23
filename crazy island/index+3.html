@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index+3</title> 
+     <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="author" content="ridha ouafi">
+  
+    
+    <style>  
+    
+            * {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.header1 {
+ display: flex;
+ flex-wrap: wrap;
+  
+ font-size: 1em;
+ color: white;
+ background-color: transparent;
+ border: 1px solid springgreen;
+ padding: 2px;
+} 
+.header2 {
+ display: flex;
+ flex-wrap: wrap;
+ 
+  font-size:4em;
+  color: white;
+  
+ background-color: black;
+ border: 1px solid springgreen;
+ padding: 10px;
+}
+
+ .footer {  
+ display: flex;
+ flex-wrap: wrap; 
+justify-content: center;
+ background-color: black;
+ border: 2px solid springgreen;
+ padding: 10px;
+ color: white;
+ text-align: center;
+ font-size: 1em;
+ position: fixed;
+ bottom: 0;
+ width: 97%;
+ }
+ /* Six buttons with code link to some pages in this project */
+ .button-group {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+ margin-top: 20px;
+ }
+ .button {
+ display: inline-block;
+ padding: 10px;
+ margin: 10px;
+ background-color: GREEN;
+ color: white;
+ border: 1px solid black;
+ border-radius: 5px;
+ font-size: 1.5em;
+ text-align: center;
+ text-decoration: none;
+ }
+
+ /* Fixed background */
+ body { 
+  
+   background-color: #FFFFFF;
+   background-image: url('bingo4.jpg');
+   background-attachment: fixed;
+   background-position: center center;
+   background-repeat: repeat;
+   background-size: 100% 100%;
+   color: #000000;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   line-height: 1.1875;
+   margin: 0;
+   padding: 0;
+
+ 
+ }
+    
+
+      
+     
+           #character {
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      
+       width: 200px;
+            height: 200px;
+            background-image: url('truck11.png');
+            animation: move 0.1s infinite;
+            
+            
+    }
+    .bullet {
+      position: absolute;
+
+           width: 100px;
+            height: 100px;
+            background-image: url('bullets1.png');
+
+             animation: fire 0s infinite;
+
+    }
+    .enemy {
+      position:absolute;
+      top:150px;
+      width: 70px;
+            height: 70px;
+            background-image: url('enemy11.png');
+       animation: move-enemy 0.3s infinite;
+    }
+    @keyframes move {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+    @keyframes fire {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+    @keyframes move-enemy {
+      0% {
+        transform: translateX(1);
+      }
+      100% {
+        transform: translateX(calc(3% - 4px));
+      }
+   
+        
+        
+         /* Flexible layout responsive design */
+
+ .header1 {
+ font-size: 0.5em;
+ padding: 2px;
+ }
+ /* Big red header with red border */
+ .header2 {
+ font-size: 4em;
+ padding: 2px;
+ }
+ /* Six buttons with code link to some pages in this project */
+ .button-group {
+ margin-top: 10px;
+ }
+ .button {
+ padding: 5px;
+ margin: 5px;
+ font-size: 1em;
+ }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.column {
+  flex: 100%;
+
+  padding: 5px;
+}
+.column img { 
+
+  width: 100%;
+  height: auto;
+
+      }
+@media screen and (max-width: 600px) {
+  .column {
+  
+    width: 100%;
+  }
+   
+   
+} 
+ 
+    </style>
+</head>
+
+
+<body> 
+
+      <div class="header1">Ridha.russia</div>
+
+ <div class="header2">Bingooo.Link</div> 
+ 
+
+
+    <div class="row">  
+
+    <div id="gameArea">
+              <div class="score">  </div> 
+             
+                  
+  
+    
+        <div id="character">
+     
+      <script>
+var character = document.getElementById("character");
+var x = 0;
+var y = 0;
+document.addEventListener("keydown", function(event) {
+  if (event.code === "ArrowUp") {
+    y -= 0;
+     direction = 'up';
+          character.style.backgroundImage = "url('truck11.png')";
+
+  } else if (event.code === "ArrowLeft") {
+    x -= 10;
+    character.style.left = x + "px";
+    direction = 'left';
+          character.style.backgroundImage = "url('truck22.png')";
+  } else if (event.code === "ArrowRight") {
+    x += 10;
+    character.style.left = x + "px";
+       direction = 'Right';
+          character.style.backgroundImage = "url('truck33.png')";
+
+  }
+});
+</script>
+
+
+
+    <script>
+        var character = document.getElementById("character");
+        var bullets = [];
+        var enemies = [];
+          var score = 0;
+    var scoreElement = document.createElement("div");
+    scoreElement.style.position = "absolute";
+    scoreElement.style.top = "50px";
+    scoreElement.style.right = "300px";
+    scoreElement.style.fontSize = "24px";
+    scoreElement.style.color = "white";
+    scoreElement.innerHTML = "Score: " + score;
+
+    document.body.appendChild(scoreElement);
+
+
+        function moveCharacter(event) {
+            var key = event.keyCode;
+            if (key === 37) { // left arrow
+                character.style.left = parseInt(character.style.left) - 10 + "px";
+            } else if (key === 39) { // right arrow
+                character.style.left = parseInt(character.style.left) + 10 + "px";
+            } else if (key === 38) { // up arrow
+                var bullet = document.createElement("div");
+                bullet.className = "bullet";
+                bullet.style.left = parseInt(character.style.left) + 1 + "px";
+                bullet.style.bottom = "6px";
+                document.getElementById("gameArea").appendChild(bullet);
+                bullets.push(bullet);
+            }
+        }
+        function moveBullets() {
+            for (var i = 0; i < bullets.length; i++) {
+                var bullet = bullets[i];
+                bullet.style.bottom = parseInt(bullet.style.bottom) + 10 + "px";
+                if (parseInt(bullet.style.bottom) > 500) {
+                    bullet.remove();
+                    bullets.splice(i, 1);
+                    i--;
+                } else {
+                    for (var j = 0; j < enemies.length; j++) {
+                        var enemy = enemies[j];
+                        if (hitTest(bullet, enemy)) {
+                            enemy.remove();
+                            enemies.splice(j, 1);
+                            j--;
+                            bullet.remove();
+                            bullets.splice(i, 1);
+                            i--;
+
+
+
+            score += 1;
+            scoreElement.innerHTML = "Score: " + score;
+            if (score == 30) {
+              alert("Bingooo:lets go to next stage");
+
+                window.location.href = "http://linkmovies.netlify.app";
+
+            }
+          }
+        }
+
+
+
+                      }
+            }
+        }
+        function moveEnemies() {
+            for (var i = 0; i < enemies.length; i++) {
+                var enemy = enemies[i];
+                enemy.style.bottom = parseInt(enemy.style.bottom) - 10 + "px";
+                if (parseInt(enemy.style.bottom) < 0) {
+                    enemy.remove();
+                    enemies.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+        function createEnemy() {
+            var enemy = document.createElement("div");
+            enemy.className = "enemy";
+            enemy.style.left = Math.floor(Math.random() * 450) + "px";
+            enemy.style.bottom = "500px";
+            document.getElementById("gameArea").appendChild(enemy);
+            enemies.push(enemy);
+        }
+        function hitTest(a, b) {
+            var aRect = a.getBoundingClientRect();
+            var bRect = b.getBoundingClientRect();
+            return !(
+                (aRect.bottom < bRect.top) ||
+                (aRect.top > bRect.bottom) ||
+                (aRect.right < bRect.left) ||
+                (aRect.left > bRect.right)
+            );
+        }
+        setInterval(moveBullets, 50);
+        setInterval(moveEnemies, 500);
+        setInterval(createEnemy, 1000);
+        document.addEventListener("keydown", moveCharacter);
+    </script>
+
+
+
+
+
+      </div>
+         </div>
+
+         </div>
+
+         <div class="footer">Riva.2023.kingolink<br>
+      http://kingooolink.vercel.app </br>
+ </div>
+
+
+
+
+</div>
+
+
+</body>
+</html>

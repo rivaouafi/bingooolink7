@@ -1,0 +1,269 @@
+                           <!DOCTYPE html>
+<html>
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>index</title>
+
+
+
+  <style> 
+  
+ * {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.header1 {
+ display: flex;
+ flex-wrap: wrap;
+  
+ font-size: 1em;
+ color: white;
+ background-color: transparent;
+ border: 1px solid springgreen;
+ padding: 2px;
+} 
+.header2 {
+ display: flex;
+ flex-wrap: wrap;
+ 
+  font-size:3em;
+  color: white;
+  
+ background-color: black;
+ border: 1px solid springgreen;
+ padding: 10px;
+}
+
+ .footer {  
+ display: flex;
+ flex-wrap: wrap; 
+justify-content: center;
+ background-color: black;
+ border: 2px solid springgreen;
+ padding: 10px;
+ color: white;
+ text-align: center;
+ font-size: 1em;
+ position: fixed;
+ bottom: 0;
+ width: 97%;
+ }
+ /* Six buttons with code link to some pages in this project */
+ .button-group {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+ margin-top: 20px;
+ }
+ .button {
+ display: inline-block;
+ padding: 10px;
+ margin: 10px;
+ background-color: GREEN;
+ color: white;
+ border: 1px solid black;
+ border-radius: 5px;
+ font-size: 1.5em;
+ text-align: center;
+ text-decoration: none;
+ }
+
+ /* Fixed background */
+ body { 
+  
+   background-color: #FFFFFF;
+   background-image: url('bingo6.jpg');
+   background-attachment: fixed;
+   background-position: center center;
+   background-repeat: repeat;
+   background-size: 100% 100%;
+   color: #000000;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   line-height: 1.1875;
+   margin: 0;
+   padding: 0;
+
+ 
+ }
+ /* Flexible layout responsive design */
+
+ .header1 {
+ font-size: 0.5em;
+ padding: 2px;
+ }
+ /* Big red header with red border */
+ .header2 {
+ font-size: 4em;
+ padding: 2px;
+ }
+ /* Six buttons with code link to some pages in this project */
+ .button-group {
+ margin-top: 10px;
+ }
+ .button {
+ padding: 5px;
+ margin: 5px;
+ font-size: 1em;
+ }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.column {
+  flex: 100%;
+
+  padding: 5px;
+}
+.column img { 
+
+  width: 100%;
+  height: auto;
+
+      }
+@media screen and (max-width: 600px) {
+  .column {
+  
+    width: 100%;
+  }
+   
+   
+} 
+
+  #game {
+    width: 500px;
+    height: 500px;
+    background-color:transparent;
+    border: 0px solid black;
+    position: relative;
+  }
+  #character {
+    width: 100px;
+    height: 100px;
+    background-image:url('sniper1.png');
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+
+
+ </style> 
+
+</head>
+<body>
+ 
+
+ <div class="header1">Ridha.russia</div>
+
+ <div class="header2">Bingooo.Link</div> 
+ 
+ <div class="button-group">
+ <a href="index.html" class="button">INTRODUCTION</a>
+ <a href="index-1.html" class="button">index</a>
+ <a href="index+6.html" class="button">topics</a>
+ <a href="index+7.html" class="button">about</a>
+ <a href="https://kingooolink.netlify.app" class="button">blog</a>
+ <a href="https://www.facebook.com/toni.romanov.92" class="button">contact</a>
+   </div>     
+      
+   
+ 
+  
+   
+     
+ <div class="row">  
+ 
+    <div id="game">
+     <a href="index+1.html"><img src="mariogo31.png" alt="image1" style="position: absolute; top:auto;left:auto; width:40%;border:6;">
+  </a>
+    <div id="character"></div>
+  </div>
+ 
+     <script>
+    const character = document.getElementById("character");
+    const game = document.getElementById("game");
+    const gameWidth = game.offsetWidth;
+    const gameHeight = game.offsetHeight;
+    const characterWidth = character.offsetWidth;
+    const characterHeight = character.offsetHeight;
+    const speed = 10;
+    const keys = {};
+    let x = 0;
+    let y = 0;
+    function moveCharacter() {
+      if (keys["ArrowUp"]) {
+        y -= speed;
+      }
+      if (keys["ArrowDown"]) {
+        y += speed;
+      }
+      if (keys["ArrowLeft"]) {
+        x -= speed;
+      }
+      if (keys["ArrowRight"]) {
+        x += speed;
+      }
+      if (x < 0) {
+        x = 0;
+      }
+      if (y < 0) {
+        y = 0;
+      }
+      if (x > gameWidth - characterWidth) {
+        x = gameWidth - characterWidth;
+      }
+      if (y > gameHeight - characterHeight) {
+        y = gameHeight - characterHeight;
+      }
+      character.style.top = y + "px";
+      character.style.left = x + "px";
+    }
+    function hitTest() {
+      if (x < 0 || y < 0 || x > gameWidth - characterWidth || y > gameHeight - characterHeight) {
+        alert("Game Over!");
+      }
+    }
+    document.addEventListener("keydown", function(event) {
+      keys[event.key] = true;
+    });
+    document.addEventListener("keyup", function(event) {
+      keys[event.key] = false;
+    });
+    setInterval(function() {
+      moveCharacter();
+      hitTest();
+    }, 1000 / 60);
+  </script>
+ 
+ 
+ 
+ 
+  </div> 
+      
+
+ 
+</div>  
+
+
+
+ <div class="footer">Riva.2023.kingolink<br>
+      http://kingooolink.vercel.app </br>
+ </div> 
+    <a href="."><img src="FOX2024.png" alt="image1" style="position: absolute; top:500px; left: 10px; width:100px;height:100px;border:1;">
+  </a>
+</div>
+
+
+</body>
+</html>
